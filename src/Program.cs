@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 
 using Noted.Data;
+using Noted.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source = notes.db"));
+
+builder.Services.AddSingleton<MarkdownRenderer>();
 
 var app = builder.Build();
 
